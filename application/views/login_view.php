@@ -2,18 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Simple Login with CodeIgniter</title>
+
+    <link rel="stylesheet" href="<?php echo(CSS.'style.css'); ?>">
+    <link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html">
+    <link rel="import" href="http://www.polymer-project.org/components/core-icons/core-icons.html">
+    <link rel="import" href="http://www.polymer-project.org/components/font-roboto/roboto.html">
 </head>
 <body>
-<h1>Simple Login with CodeIgniter</h1>
+
+<div id="header">
+
+
+</div>
+<div id="nav">
+
+
+</div>
+
+
+
+<div id="loginBox">
+
+<h1>Simple Login</h1>
 <?php echo validation_errors(); ?>
 <?php echo form_open('verifylogin'); ?>
-<label for="username">Username:</label>
+
 <input type="text" size="20" id="username" name="username"/>
 <br/>
-<label for="password">Password:</label>
 <input type="password" size="20" id="passowrd" name="password"/>
 <br/>
 <input type="submit" value="Login"/>
 </form>
+
+</div>
 </body>
 </html>
