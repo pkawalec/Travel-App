@@ -12,6 +12,7 @@ class Login extends CI_Controller {
         $this->load->helper(array('form'));
         $this->load->view('login_view');
     }
+
   
   function signup(){
     $this->load->view('signup_view');
@@ -41,6 +42,7 @@ class Login extends CI_Controller {
         }
 
     }
+
 }
 
 ?>

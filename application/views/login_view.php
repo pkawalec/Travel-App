@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Simple Login with CodeIgniter</title>
+
     <link rel="stylesheet" href="<?php echo(CSS.'style.css'); ?>">
     <link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html">
     <link rel="import" href="http://www.polymer-project.org/components/core-icons/core-icons.html">
@@ -25,6 +26,7 @@
 <h1>Simple Login</h1>
 <?php echo validation_errors(); ?>
 <?php echo form_open('verifylogin'); ?>
+<<<<<<< HEAD
 <form>
 <input type="text" size="20" id="username" name="username" placeholder="Username"/>
 <br/>
@@ -32,6 +34,14 @@
 <br/>
 <input type="submit" value="Login"/>
 <a href="login/signup">Create account</a>
+=======
+
+<input type="text" size="20" id="username" name="username"/>
+<br/>
+<input type="password" size="20" id="passowrd" name="password"/>
+<br/>
+<input type="submit" value="Login"/>
+>>>>>>> origin/master
 </form>
 
 </div>
