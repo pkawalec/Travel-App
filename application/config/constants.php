@@ -17,7 +17,7 @@ define('FILE_READ_MODE', 0644);
 define('FILE_WRITE_MODE', 0666);
 define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
-define('URL','http://localhost/project2/');
+define('URL','http://localhost/travel-app/');
 define('IMG',URL.'assests/img/');
 define('CSS',URL.'assests/css/');
 define('JS',URL.'assests/js/');

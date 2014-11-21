@@ -20,5 +20,15 @@ Class User extends CI_Model
             return false;
         }
     }
+  
+  function signup($username,$password){
+    
+    $user_details = array(
+      'username' => $username,
+      'password' => MD5($password)
+    );
+    $result = $this->db->insert('users', $user_details);
+    return $result;
+  }
 }
 ?>

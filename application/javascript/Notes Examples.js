@@ -1,4 +1,8 @@
-
+function onHideWidgetClick(){
+	
+	$('#filckerContainer').slideToggle();
+	
+}
 
 
 
