@@ -10,6 +10,7 @@
     <link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html">
     <link rel="import" href="http://www.polymer-project.org/components/core-icons/core-icons.html">
     <link rel="import" href="http://www.polymer-project.org/components/font-roboto/roboto.html">
+
     <script src="<?php echo (JS.'jq.js');?>" type="text/javascript"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
@@ -57,5 +58,6 @@
   
 
     <script src="<?php echo (JS.'maps.js');?>" type="text/javascript" ></script>
+
 </body>
 </html>

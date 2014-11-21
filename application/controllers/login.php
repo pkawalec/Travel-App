@@ -17,6 +17,10 @@ class Login extends CI_Controller {
     $this->load->view('signup_view');
   }
   
+
+  
+ 
+  
   function verifySignup()
     {
         //This method will have the fields validation
@@ -24,6 +28,7 @@ class Login extends CI_Controller {
 
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+
 
         if($this->form_validation->run() == FALSE)
         {
@@ -41,6 +46,7 @@ class Login extends CI_Controller {
         }
 
     }
+
 }
 
 ?>

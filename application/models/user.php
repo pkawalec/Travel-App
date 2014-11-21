@@ -20,6 +20,7 @@ Class User extends CI_Model
             return false;
         }
     }
+
   
   function signup($username,$password){
     
@@ -30,5 +31,6 @@ Class User extends CI_Model
     $result = $this->db->insert('users', $user_details);
     return $result;
   }
+
 }
 ?>
