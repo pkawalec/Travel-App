@@ -47,8 +47,14 @@
 
 
     <div id="flickerContainer"></div>
+    
 
-    <div id="weatherContainer">This is ready for weather images</div>
+    <div id="weatherContainer">
+        <div id="weatherImage">This is ready for weather images</div>
+        <div id="tomeTable">time table</div>
+    </div>
+     
+     
     
   </div>
   
