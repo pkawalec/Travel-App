@@ -1,17 +1,11 @@
+ alert("dd");
 function onHideWidgetClick(){
 	
 	$('#filckerContainer').slideToggle();
 	
 }
-
-
-
-
-
-
-
-
-
+ var searches = "";
+var origin = "Cork";
 
 function flicker() {
 
@@ -19,10 +13,15 @@ $('#searchinput').bind('keypress', function(e) {
     	if (e.keyCode == 13) {
                 
        var searches = "";
+    
         $("#searchinput").each(function (index) {
 
             searches += $(this).val() + "+";
         });
+           
+            callIrishRail();
+            
+            
 
         $("h1").remove();
 
@@ -54,3 +53,30 @@ $('#searchinput').bind('keypress', function(e) {
         });
 			}
 	});
+    function callIrishRail(){
+        alert("rail");
+    ///call irish train API 
+    if(window.XMLHttpRequest){
+        xmlhttp = new XMLHttpRequest();      
+    }else{
+        alert("Your browser is not supported");
+    }
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            //here manipulate results
+            var res = xmlhttp.responseText;
+            alert(res);
+            displayTimeTable(res);
+            }
+        }
+    
+    xmlhttp.open("GET","api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Cork", true);
+    xmlhttp.send();
+
+            
+            
+            ////////////////
+    }
+    function displayTimeTable(res){
+    alert(res);
+    }

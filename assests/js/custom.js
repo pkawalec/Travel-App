@@ -11,13 +11,13 @@ function onHideWidgetClick(){
 	}	
 }
 
-
+var searches = "";
 
 $('#searchinput').bind('keypress', function(e) {
 
     	if (e.keyCode == 13) {
                 
-       var searches = "";
+       
         $("#searchinput").each(function (index) {
 
             searches += $(this).val() + "+";
@@ -51,8 +51,40 @@ $('#searchinput').bind('keypress', function(e) {
                 }
             });
         });
+            callIrishRail();
 			}
     document.getElementById('body').style.height = "200%";
+    
 	});
 //-----------------------------
 
+function callIrishRail(){
+        alert("rail");
+    ///call irish train API 
+    if(window.XMLHttpRequest){
+        xmlhttp = new XMLHttpRequest();      
+    }else{
+        alert("Your browser is not supported");
+    }
+    xmlhttp.onreadystatechange = function(){
+     
+       // alert(xmlhttp.status);
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+           
+            //here manipulate results
+            var res = xmlhttp.responseText;
+            alert(res);
+            //displayTimeTable(res);
+            }
+        }
+    
+   // var s = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Cork";
+    //var s = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML";
+    xmlhttp.open("GET", "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=mhide", true);
+    xmlhttp.send();
+
+            
+            
+            ////////////////
+    }
+ 
