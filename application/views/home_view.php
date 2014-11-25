@@ -50,8 +50,15 @@
     
 
     <div id="weatherContainer">
-        <div id="weatherImage">This is ready for weather images</div>
-        <div id="tomeTable">time table</div>
+       <div id="weatherImage">
+</div>
+
+    <div id="weatherImage2">
+</div>
+
+ 
+        <div id="weatherImage"></div>
+        <div id="tomeTable"></div>
     </div>
      
      
@@ -61,7 +68,7 @@
 
   
       <script src="<?php echo(JS.'custom.js');?>"  type="text/javascript"></script>
-  
+  <script src="<?php echo (JS.'yahooWeather.js');?>" type="text/javascript" ></script>
 
     <script src="<?php echo (JS.'maps.js');?>" type="text/javascript" ></script>
 

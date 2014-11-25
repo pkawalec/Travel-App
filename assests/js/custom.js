@@ -54,12 +54,61 @@ $('#searchinput').bind('keypress', function(e) {
             callIrishRail();
 			}
     document.getElementById('body').style.height = "200%";
-    
+    weather(searches);
 	});
 //-----------------------------
 
+
+
+
+function weather(searches = 'cork'){
+    
+    if(document.getElementById('weatherImage').innerHTML != ""){
+    
+        document.getElementById('weatherImage').innerHTML = "";
+    }
+ 
+    var con = searches;
+    var country = 'ie';
+ 
+    var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + con  + "," + country+"')&format=json&callback=yqlCallback";
+ 
+    window['yqlCallback'] = function(data) {
+      
+     var sunRise= data.query.results.channel.astronomy.sunrise;
+     var sunSet = data.query.results.channel.astronomy.sunset;
+     var country = data.query.results.channel.location.country;
+     var city = data.query.results.channel.location.city;
+     var weatherCode = data.query.results.channel.item.condition.code;
+        
+        
+        
+     var weatherDesription = data.query.results.channel.item.condition.text;
+     var weatherDesriptionFull = data.query.results.channel.item.description;
+        
+        //Weather for the next few days.
+     $('#weatherImage').append(weatherDesriptionFull);
+        
+        
+        // Just the weather image by themselfs.
+    // $('#weatherImage2').append('<img src="http://l.yimg.com/a/i/us/we/52/'    +  weatherCode+ '.gif" />');
+
+
+ };
+ 
+    $.ajax({
+        url: url,
+        dataType: 'jsonp',
+        cache: true,
+        jsonpCallback: 'yqlCallback'
+    });
+     
+}
+
+
+//--------------------
 function callIrishRail(){
-        alert("rail");
+        //alert("rail");
     ///call irish train API 
     if(window.XMLHttpRequest){
         xmlhttp = new XMLHttpRequest();      
@@ -72,7 +121,7 @@ function callIrishRail(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
            
             //here manipulate results
-            var res = xmlhttp.responseText;
+            var re//s = xmlhttp.responseText;
             alert(res);
             //displayTimeTable(res);
             }
@@ -87,4 +136,4 @@ function callIrishRail(){
             
             ////////////////
     }
- 
+ weather();
