@@ -1,6 +1,5 @@
 document.getElementById('hideBtn').addEventListener('click', onHideWidgetClick, false);
-document.getElementById('submit');
-
+var searches = "";
 function onHideWidgetClick(){
 	$('#flickerContainer').slideToggle();
 	$('#weatherContainer').slideToggle();
@@ -10,79 +9,53 @@ function onHideWidgetClick(){
 		$(this).text('Hide widgets');
 	}	
 }
-
-var searches = "";
-
 $('#searchinput').bind('keypress', function(e) {
-
-    	if (e.keyCode == 13) {
-                
-       
+    	if (e.keyCode == 13) {        
         $("#searchinput").each(function (index) {
-
             searches += $(this).val() + "+";
         });
-
+            
         $("h1").remove();
-
-         $("#flickerContainer img").remove();
+        $("#flickerContainer img").remove();
         var term = searches;
         var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8b010ef32af4006f4fac0249a746289e&tags=" + term +"&safe_search=1&per_page=100";
         var src;
         $.getJSON(url + "&format=json&jsoncallback=?", function (data) {
 
             if (data.photos.photo.length === 0) {
-
-                $("<img/>").attr("class", 'error').appendTo("#flickerContainer");
-         
-                $(".error").attr("src", "../img/icons/graph.png").appendTo("#flickerContainer");
-          
+                $("<img/>").attr("class", 'error').appendTo("#flickerContainer");        
+                $(".error").attr("src", "../img/icons/graph.png").appendTo("#flickerContainer");        
             }
+            
             $.each(data.photos.photo, function (i, item) {
                 src = "http://farm" + item.farm + ".static.flickr.com/" + item.server + "/" + item.id + "_" + item.secret + "_m.jpg";
             
                 $("<img/>").attr("src", src).appendTo("#flickerContainer");
-                 
-      
-         
-
                 if (i == 4) {
                     return false;
                 }
             });
         });
             callIrishRail();
-			}
-    document.getElementById('body').style.height = "200%";
-    weather(searches);
+            weather(searches);
+        }
+        resizeMap();
 	});
-//-----------------------------
 
-
-
-
-function weather(searches = 'cork'){
-    
-    if(document.getElementById('weatherImage').innerHTML != ""){
-    
+function weather(searches = 'cork'){    
+    if(document.getElementById('weatherImage').innerHTML != ""){   
         document.getElementById('weatherImage').innerHTML = "";
     }
- 
     var con = searches;
     var country = 'ie';
- 
     var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + con  + "," + country+"')&format=json&callback=yqlCallback";
  
-    window['yqlCallback'] = function(data) {
-      
+    window['yqlCallback'] = function(data) {     
      var sunRise= data.query.results.channel.astronomy.sunrise;
      var sunSet = data.query.results.channel.astronomy.sunset;
      var country = data.query.results.channel.location.country;
      var city = data.query.results.channel.location.city;
-     var weatherCode = data.query.results.channel.item.condition.code;
-        
-        
-        
+     var weatherCode = data.query.results.channel.item.condition.code;        
      var weatherDesription = data.query.results.channel.item.condition.text;
      var weatherDesriptionFull = data.query.results.channel.item.description;
         
@@ -104,36 +77,57 @@ function weather(searches = 'cork'){
     });
      
 }
-
-
-//--------------------
-function callIrishRail(){
-        //alert("rail");
+var xmlHttp;
+function callIrishRail(){   
     ///call irish train API 
     if(window.XMLHttpRequest){
-        xmlhttp = new XMLHttpRequest();      
+        xmlHttp = new XMLHttpRequest();  
     }else{
         alert("Your browser is not supported");
     }
-    xmlhttp.onreadystatechange = function(){
-     
-       // alert(xmlhttp.status);
-        if(xmlhttp.readyState==4 && xmlhttp.status==200){
-           
-            //here manipulate results
-            var re//s = xmlhttp.responseText;
-            alert(res);
-            //displayTimeTable(res);
+    xmlHttp.onreadystatechange = function(){
+ );
+        if(xmlHttp.readyState==4 && xmlHttp.status==200){
+
+            //var restext = xmlHttp.responseText;
+            var res = xmlHttp.responseXML;    
+            refactorTimeTable(res);
             }
         }
-    
-   // var s = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Cork";
-    //var s = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML";
-    xmlhttp.open("GET", "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=mhide", true);
-    xmlhttp.send();
-
-            
-            
-            ////////////////
+    xmlHttp.open("GET", "../file.xml?="+Math.random(), true);
+    xmlHttp.send();
     }
- weather();
+weather();
+function resizeMap(){
+       
+    var map = document.getElementById('map-canvas');
+        var flickerHeight = document.getElementById("flickerContainer").offsetHeight;
+        var mapHeight = document.getElementById('map-canvas').offsetHeight;
+        if(flickerHeight > mapHeight){
+            document.getElementById('map-canvas').style.height = flickerHeight + 'px';
+             google.maps.event.trigger(map, "resize");
+        }
+
+}
+
+function refactorTimeTable(res){
+    var str = "";
+    var objstationdata = res.documentElement.childNodes;
+    for(var i=0; i<objstationdata.length; i++){
+        str += "<h3>";
+        str += objstationdata[i].childNodes[6].childNodes[0].nodeValue;
+        str += "<span> - </span>";
+        str += objstationdata[i].childNodes[7].childNodes[0].nodeValue;
+        str += "</h3><p>&nbsp;&nbsp;&nbsp;Departure: ";
+        str += objstationdata[i].childNodes[8].childNodes[0].nodeValue;
+        str += " Arrival: ";
+        str += objstationdata[i].childNodes[9].childNodes[0].nodeValue;
+        str += "</br>&nbsp;&nbsp;&nbsp;Due in: ";
+        str += objstationdata[i].childNodes[12].childNodes[0].nodeValue;
+        str += "min(s), Late: ";
+        str += objstationdata[i].childNodes[13].childNodes[0].nodeValue;
+        str += "min(s)</p>";  
+    }
+     var container = document.getElementById('timeTable');
+    container.innerHTML = str;
+}

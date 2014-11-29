@@ -8,32 +8,18 @@
     <link rel="import" href="http://www.polymer-project.org/components/font-roboto/roboto.html">
 </head>
 <body>
-
-
-<div id="nav">
-
-
-</div>
-
-
-
-<div id="loginBox">
-
-<h1>Simple Login</h1>
-<?php echo validation_errors(); ?>
-<?php echo form_open('verifylogin'); ?>
-
-<input type="text" size="20" id="username" name="username" placeholder="Username"/>
-<br/>
-<input type="password" size="20" id="passowrd" name="password" placeholder="Password"/>
-<br/>
-<input type="submit" value="Login"/>
-<a href="login/signup">Create account</a>
-
-
-
-</div>
-  
-  
+    <div id="nav">
+    </div>
+    <div id="loginBox">
+        <h1>Simple Login</h1>
+        <?php echo validation_errors(); ?>
+        <?php echo form_open( 'verifylogin'); ?>
+        <input type="text" size="20" id="username" name="username" placeholder="Username" />
+        <br/>
+        <input type="password" size="20" id="passowrd" name="password" placeholder="Password" />
+        <br/>
+        <input type="submit" value="Login" />
+        <a href="login/signup">Create account</a>
+    </div>
 </body>
 </html>

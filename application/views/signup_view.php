@@ -9,47 +9,25 @@
     <link rel="import" href="http://www.polymer-project.org/components/font-roboto/roboto.html">
 </head>
 <body>
-
-
-<div id="nav">
-
-
-</div>
-
-
-
-<div id="loginBox">
-
-<h1>Simple Signup</h1>
-  <fieldset>
-    <legend>Personal Information</legend>
-    <?php
-      $userData = array(
-        'name'  => 'username',
-        'size'  => '20',
-        'id'    => 'username',
-        'placeholder' => 'Username'
-      );
-      $userPass = array(
-        'name'  => 'password',
-        'size'   => '20',
-        'id'    => 'password',
-        'placeholder' =>'Password'
-      );
-
-      echo form_open('login/verifySignup');
-      echo form_input($userData) . '<br />';
-      echo form_password($userPass) . '<br />';
-      echo form_submit('submit', 'Sign Up');
-
-
-    ?>
-    
-  </fieldset>
-  
-  <a href="../login">Login</a>
-
-
-</div>
+    <div id="nav">
+    </div>
+    <div id="loginBox">
+        <h1>Simple Signup</h1>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <?php $userData=array( 'name'=>'username',
+                                    'size' => '20',
+                                    'id' => 'username',
+                                    'placeholder' => 'Username' );
+            $userPass = array( 'name' => 'password',
+                                'size' => '20',
+                                'id' => 'password',
+                                'placeholder' =>'Password' );
+            echo form_open('login/verifySignup');
+            echo form_input($userData) . '<br />'; echo form_password($userPass) . '
+                <br />'; echo form_submit('submit', 'Sign Up'); ?>
+        </fieldset>
+        <a href="../login">Login</a>
+    </div>
 </body>
 </html>
