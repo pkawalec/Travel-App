@@ -1,5 +1,5 @@
-document.getElementById('hideBtn').addEventListener('click', onHideWidgetClick, false);
 var searches = "";
+var xmlHttp;
 function onHideWidgetClick(){
 	$('#flickerContainer').slideToggle();
 	$('#weatherContainer').slideToggle();
@@ -66,7 +66,6 @@ function weather(searches = 'cork'){
         // Just the weather image by themselfs.
     // $('#weatherImage2').append('<img src="http://l.yimg.com/a/i/us/we/52/'    +  weatherCode+ '.gif" />');
 
-
  };
  
     $.ajax({
@@ -77,7 +76,7 @@ function weather(searches = 'cork'){
     });
      
 }
-var xmlHttp;
+
 function callIrishRail(){   
     ///call irish train API 
     if(window.XMLHttpRequest){
@@ -86,9 +85,9 @@ function callIrishRail(){
         alert("Your browser is not supported");
     }
     xmlHttp.onreadystatechange = function(){
- );
+        
         if(xmlHttp.readyState==4 && xmlHttp.status==200){
-
+            
             //var restext = xmlHttp.responseText;
             var res = xmlHttp.responseXML;    
             refactorTimeTable(res);
@@ -96,7 +95,8 @@ function callIrishRail(){
         }
     xmlHttp.open("GET", "../file.xml?="+Math.random(), true);
     xmlHttp.send();
-    }
+    
+}
 weather();
 function resizeMap(){
        
@@ -118,11 +118,11 @@ function refactorTimeTable(res){
         str += objstationdata[i].childNodes[6].childNodes[0].nodeValue;
         str += "<span> - </span>";
         str += objstationdata[i].childNodes[7].childNodes[0].nodeValue;
-        str += "</h3><p>&nbsp;&nbsp;&nbsp;Departure: ";
+        str += "</h3><p>Departure: <span class='dep'>";
         str += objstationdata[i].childNodes[8].childNodes[0].nodeValue;
-        str += " Arrival: ";
+        str += "</span> Arrival: <span class='arrival'>";
         str += objstationdata[i].childNodes[9].childNodes[0].nodeValue;
-        str += "</br>&nbsp;&nbsp;&nbsp;Due in: ";
+        str += "</span></br>Due in: ";
         str += objstationdata[i].childNodes[12].childNodes[0].nodeValue;
         str += "min(s), Late: ";
         str += objstationdata[i].childNodes[13].childNodes[0].nodeValue;
@@ -131,3 +131,4 @@ function refactorTimeTable(res){
      var container = document.getElementById('timeTable');
     container.innerHTML = str;
 }
+document.getElementById('hideBtn').addEventListener('click', onHideWidgetClick, false);

@@ -23,7 +23,7 @@
                                 'size' => '20',
                                 'id' => 'password',
                                 'placeholder' =>'Password' );
-            echo form_open('login/verifySignup');
+            echo form_open('/login/verifySignup');
             echo form_input($userData) . '<br />'; echo form_password($userPass) . '
                 <br />'; echo form_submit('submit', 'Sign Up'); ?>
         </fieldset>

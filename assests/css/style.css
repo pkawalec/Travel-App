@@ -132,7 +132,7 @@ input[type=submit]:hover {
     width: 25%;
     height: 100%;
     min-width: 250px;
-    background-color: rgba(155, 155, 155, 0.7);
+    background-color: rgba(225, 225, 225, 0.9);
     z-index: 20;
 }
 /*google maps api*/
@@ -165,5 +165,8 @@ input[type=submit]:hover {
      margin: 2px 0px 0px 0px;
  }
  #timeTable p {
-     margin: 2px 0px 0px 0px;
+     margin: 2px 0px 0px 30px;
  }
+.dep{
+    color: red;
+}

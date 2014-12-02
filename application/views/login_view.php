@@ -13,13 +13,13 @@
     <div id="loginBox">
         <h1>Simple Login</h1>
         <?php echo validation_errors(); ?>
-        <?php echo form_open( 'verifylogin'); ?>
+        <?php echo form_open( '/verifylogin/verifylogin'); ?>
         <input type="text" size="20" id="username" name="username" placeholder="Username" />
         <br/>
         <input type="password" size="20" id="passowrd" name="password" placeholder="Password" />
         <br/>
         <input type="submit" value="Login" />
-        <a href="login/signup">Create account</a>
+        <a href="/travel-app/index.php/login/signup">Create account</a>
     </div>
 </body>
 </html>
